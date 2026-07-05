@@ -1,0 +1,132 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  role      Role     @default(ADMIN)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum Role {
+  ADMIN
+  VISITOR
+}
+
+model Project {
+  id               String   @id @default(uuid())
+  title            String
+  subtitle         String?
+  description      String
+  longDescription  String?
+  features         String[]
+  technologies     String[]
+  screenshots      String[]
+  videos           String[]
+  architectureUrl  String?
+  databaseDesignUrl String?
+  apiDocsUrl       String?
+  githubUrl        String?
+  liveUrl          String?
+  deploymentPlatform String?
+  timeline         String?
+  status           String?
+  category         String?
+  difficulty       String?
+  teamSize         Int?
+  responsibilities String[]
+  challenges       String[]
+  solutions        String[]
+  lessonsLearned   String[]
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model Skill {
+  id        String   @id @default(uuid())
+  name      String
+  category  SkillCategory
+  icon      String?
+  level     Int      @default(0) // 0-100
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum SkillCategory {
+  FRONTEND
+  BACKEND
+  DATABASE
+  DEVOPS
+  CLOUD
+  TOOLS
+  LANGUAGES
+}
+
+model Experience {
+  id          String   @id @default(uuid())
+  company     String
+  role        String
+  startDate   DateTime
+  endDate     DateTime?
+  current     Boolean  @default(false)
+  description String
+  achievements String[]
+  technologies String[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Certificate {
+  id          String   @id @default(uuid())
+  name        String
+  issuer      String
+  issueDate   DateTime
+  url         String?
+  imageUrl    String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Testimonial {
+  id          String   @id @default(uuid())
+  name        String
+  role        String
+  company     String
+  content     String
+  avatarUrl   String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model ContactMessage {
+  id        String   @id @default(uuid())
+  name      String
+  email     String
+  subject   String?
+  message   String
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model VisitorLog {
+  id        String   @id @default(uuid())
+  ip        String?
+  userAgent String?
+  path      String
+  visitedAt DateTime @default(now())
+}
+
+model Analytics {
+  id          String   @id @default(uuid())
+  key         String   @unique
+  value       Int      @default(0)
+  updatedAt   DateTime @updatedAt
+}
