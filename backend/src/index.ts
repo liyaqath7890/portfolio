@@ -40,14 +40,16 @@ app.use(notFound);
 app.use(errorHandler);
 
 // Start Server
-app.listen(PORT, async () => {
-  console.log(`Server is running on port ${PORT}`);
-  try {
-    await prisma.$connect();
-    console.log('Connected to PostgreSQL Database via Prisma');
-  } catch (error) {
-    console.error('Database connection failed', error);
-  }
-});
+if (!process.env.VERCEL) {
+  app.listen(PORT, async () => {
+    console.log(`Server is running on port ${PORT}`);
+    try {
+      await prisma.$connect();
+      console.log('Connected to PostgreSQL Database via Prisma');
+    } catch (error) {
+      console.error('Database connection failed', error);
+    }
+  });
+}
 
 export default app;
