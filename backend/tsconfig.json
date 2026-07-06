@@ -3,10 +3,9 @@
     // Output
     "outDir": "./dist",
 
-    // Environment
-    "module": "commonjs",
-    "moduleResolution": "node",
-    "ignoreDeprecations": "6.0",
+    // Environment — node16 pair is required together; no deprecation warnings
+    "module": "node16",
+    "moduleResolution": "node16",
     "target": "es2020",
     "lib": ["es2020"],
     "types": ["node"],
@@ -16,7 +15,7 @@
     "declaration": true,
     "declarationMap": true,
 
-    // Strict Settings — all enabled, no cheats
+    // Strict — all enabled, no hacks
     "strict": true,
     "noUncheckedIndexedAccess": true,
 
