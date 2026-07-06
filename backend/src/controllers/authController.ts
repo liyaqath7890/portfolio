@@ -1,26 +1,59 @@
-import { Request, Response, NextFunction } from 'express';
-import { AuthService } from '../services/authService';
+import { Request, Response } from 'express';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import { PrismaClient } from '@prisma/client';
 
-const authService = new AuthService();
+const prisma = new PrismaClient();
 
-export const loginAdmin = async (req: Request, res: Response, next: NextFunction) => {
+export const login = async (req: Request, res: Response) => {
   try {
     const { email, password } = req.body;
-    const authData = await authService.login(email, password);
-    res.status(200).json(authData);
-  } catch (error: any) {
-    res.status(401);
-    next(error);
-  }
-};
 
-export const registerAdmin = async (req: Request, res: Response, next: NextFunction) => {
-  try {
-    const { email, password } = req.body;
-    const authData = await authService.registerAdmin(email, password);
-    res.status(201).json(authData);
+    if (!email || !password) {
+      return res.status(400).json({
+        success: false,
+        message: 'Please provide email and password',
+      });
+    }
+
+    const admin = await prisma.admin.findUnique({
+      where: { email },
+    });
+
+    if (!admin) {
+      return res.status(401).json({
+        success: false,
+        message: 'Invalid credentials',
+      });
+    }
+
+    const isMatch = await bcrypt.compare(password, admin.password);
+    if (!isMatch) {
+      return res.status(401).json({
+        success: false,
+        message: 'Invalid credentials',
+      });
+    }
+
+    // Sign JWT
+    const token = jwt.sign(
+      { id: admin.id },
+      process.env.JWT_SECRET || 'secret',
+      { expiresIn: (process.env.JWT_EXPIRES_IN || '7d') as any }
+    );
+
+    res.status(200).json({
+      success: true,
+      message: 'Login successful',
+      data: {
+        token,
+        email: admin.email,
+      },
+    });
   } catch (error: any) {
-    res.status(400);
-    next(error);
+    res.status(500).json({
+      success: false,
+      message: error.message || 'Login failed',
+    });
   }
 };

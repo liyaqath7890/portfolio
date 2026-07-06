@@ -1,14 +1,20 @@
 import express from 'express';
-import { getSkills, createSkill, deleteSkill } from '../controllers/skillController';
-import { protect, admin } from '../middlewares/authMiddleware';
+import {
+  getSkills,
+  createSkill,
+  updateSkill,
+  deleteSkill,
+} from '../controllers/skillController';
+import { protect } from '../middleware/authMiddleware';
 
 const router = express.Router();
 
 router.route('/')
   .get(getSkills)
-  .post(protect, admin, createSkill);
+  .post(protect, createSkill);
 
 router.route('/:id')
-  .delete(protect, admin, deleteSkill);
+  .put(protect, updateSkill)
+  .delete(protect, deleteSkill);
 
 export default router;

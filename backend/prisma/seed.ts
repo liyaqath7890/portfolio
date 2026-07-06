@@ -1,44 +1,32 @@
 import { PrismaClient } from '@prisma/client';
-import { Pool } from 'pg';
-import { PrismaPg } from '@prisma/adapter-pg';
 import bcrypt from 'bcryptjs';
+import dotenv from 'dotenv';
 
-const connectionString = process.env.DATABASE_URL;
-const pool = new Pool({ connectionString });
-const adapter = new PrismaPg(pool);
+dotenv.config();
 
-const prisma = new PrismaClient({ adapter });
+const prisma = new PrismaClient();
 
 async function main() {
-  console.log('Start seeding...');
-
-  const adminEmail = process.env.ADMIN_EMAIL || 'admin@portfolio.com';
-  const adminPassword = process.env.ADMIN_PASSWORD || 'secureadmin123';
+  const email = process.env.ADMIN_EMAIL || 'admin@example.com';
+  const password = process.env.ADMIN_PASSWORD || 'admin123';
 
   // Check if admin already exists
-  const existingAdmin = await prisma.user.findUnique({
-    where: { email: adminEmail },
+  const existingAdmin = await prisma.admin.findUnique({
+    where: { email },
   });
 
   if (!existingAdmin) {
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(adminPassword, salt);
-
-    const admin = await prisma.user.create({
+    const hashedPassword = await bcrypt.hash(password, 10);
+    await prisma.admin.create({
       data: {
-        email: adminEmail,
+        email,
         password: hashedPassword,
-        role: 'ADMIN',
       },
     });
-
-    console.log(`Created admin user: ${admin.email}`);
-    console.log(`Password: ${adminPassword} (Please change this in production!)`);
+    console.log(`Admin user created: ${email}`);
   } else {
     console.log('Admin user already exists.');
   }
-
-  console.log('Seeding finished.');
 }
 
 main()
