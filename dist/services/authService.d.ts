@@ -4,13 +4,13 @@ export declare class AuthService {
     login(email: string, password: string): Promise<{
         id: string;
         email: string;
-        role: import(".prisma/client").$Enums.Role;
+        role: import("@prisma/client").$Enums.Role;
         token: string;
     }>;
     registerAdmin(email: string, password: string): Promise<{
         id: string;
         email: string;
-        role: import(".prisma/client").$Enums.Role;
+        role: import("@prisma/client").$Enums.Role;
         token: string;
     }>;
 }

@@ -4,7 +4,7 @@ export declare class UserRepository {
         id: string;
         email: string;
         password: string;
-        role: import(".prisma/client").$Enums.Role;
+        role: import("@prisma/client").$Enums.Role;
         createdAt: Date;
         updatedAt: Date;
     } | null>;
@@ -12,14 +12,14 @@ export declare class UserRepository {
         id: string;
         email: string;
         password: string;
-        role: import(".prisma/client").$Enums.Role;
+        role: import("@prisma/client").$Enums.Role;
         createdAt: Date;
         updatedAt: Date;
     }>;
     findById(id: string): Promise<{
         id: string;
         email: string;
-        role: import(".prisma/client").$Enums.Role;
+        role: import("@prisma/client").$Enums.Role;
         createdAt: Date;
         updatedAt: Date;
     } | null>;
