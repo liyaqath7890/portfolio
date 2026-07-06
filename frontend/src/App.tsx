@@ -13,6 +13,7 @@ import Projects from './components/public/Projects';
 import Skills from './components/public/Skills';
 import Experience from './components/public/Experience';
 import Blog from './components/public/Blog';
+import BlogPost from './pages/public/BlogPost';
 import Contact from './components/public/Contact';
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
             <Route path="skills" element={<Skills />} />
             <Route path="experience" element={<Experience />} />
             <Route path="blog" element={<Blog />} />
+            <Route path="blog/:id" element={<BlogPost />} />
             <Route path="contact" element={<Contact />} />
             <Route path="project/:id" element={<ProjectDetail />} />
           </Route>

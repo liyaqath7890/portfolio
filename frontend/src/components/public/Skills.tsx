@@ -23,18 +23,18 @@ const Skills3D = () => {
 };
 
 const skillsData = [
-  { name: 'React', category: 'Frontend', icon: '⚛️', color: 'text-sky-400' },
-  { name: 'TypeScript', category: 'Frontend', icon: 'TS', color: 'text-blue-500' },
-  { name: 'Tailwind CSS', category: 'Frontend', icon: '🌊', color: 'text-teal-400' },
-  { name: 'Next.js', category: 'Frontend', icon: 'N', color: 'text-white' },
-  { name: 'Node.js', category: 'Backend', icon: '🟩', color: 'text-green-500' },
-  { name: 'Express.js', category: 'Backend', icon: 'EX', color: 'text-slate-300' },
-  { name: 'PostgreSQL', category: 'Database', icon: '🐘', color: 'text-blue-400' },
-  { name: 'MongoDB', category: 'Database', icon: '🍃', color: 'text-green-600' },
-  { name: 'Docker', category: 'DevOps', icon: '🐳', color: 'text-blue-500' },
-  { name: 'Git', category: 'Tools', icon: '🌲', color: 'text-orange-500' },
-  { name: 'GitHub', category: 'Tools', icon: '🐙', color: 'text-white' },
-  { name: 'Vercel', category: 'DevOps', icon: '▲', color: 'text-white' },
+  { name: 'React', category: 'Frontend', icon: '⚛️', color: 'text-sky-400', desc: 'Component-driven UI development & state management' },
+  { name: 'TypeScript', category: 'Frontend', icon: 'TS', color: 'text-blue-500', desc: 'Static typing for robust, scalable applications' },
+  { name: 'Tailwind CSS', category: 'Frontend', icon: '🌊', color: 'text-teal-400', desc: 'Utility-first styling for rapid, responsive design' },
+  { name: 'Next.js', category: 'Frontend', icon: 'N', color: 'text-white', desc: 'Server-side rendering & full-stack React framework' },
+  { name: 'Node.js', category: 'Backend', icon: '🟩', color: 'text-green-500', desc: 'Event-driven, non-blocking I/O for scalable APIs' },
+  { name: 'Express.js', category: 'Backend', icon: 'EX', color: 'text-slate-300', desc: 'Fast, unopinionated minimalist web framework' },
+  { name: 'PostgreSQL', category: 'Database', icon: '🐘', color: 'text-blue-400', desc: 'Advanced open-source relational database' },
+  { name: 'MongoDB', category: 'Database', icon: '🍃', color: 'text-green-600', desc: 'Flexible NoSQL document database for modern apps' },
+  { name: 'Docker', category: 'DevOps', icon: '🐳', color: 'text-blue-500', desc: 'Containerization for consistent deployment environments' },
+  { name: 'Git', category: 'Tools', icon: '🌲', color: 'text-orange-500', desc: 'Distributed version control & collaboration' },
+  { name: 'GitHub', category: 'Tools', icon: '🐙', color: 'text-white', desc: 'Code hosting, CI/CD, & open-source contribution' },
+  { name: 'Vercel', category: 'DevOps', icon: '▲', color: 'text-white', desc: 'Edge network deployment & serverless functions' },
 ];
 
 const categories = ['Frontend', 'Backend', 'Database', 'DevOps', 'Tools'];
@@ -94,7 +94,10 @@ const Skills = () => {
                   </span>
                 </motion.div>
               </div>
-              <span className="text-white font-medium tracking-wide mt-2">{skill.name}</span>
+              <div className="text-center mt-3 max-w-[150px]">
+                <span className="text-white font-semibold tracking-wide block text-lg">{skill.name}</span>
+                <span className="text-slate-400 text-xs mt-1 block leading-tight">{skill.desc}</span>
+              </div>
             </motion.div>
           ))}
         </div>

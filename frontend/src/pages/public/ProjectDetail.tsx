@@ -1,8 +1,10 @@
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useParams } from 'react-router-dom';
-import { ArrowLeft, ExternalLink } from 'lucide-react';
+import { ArrowLeft, ExternalLink, X, Image as ImageIcon, PlayCircle } from 'lucide-react';
 import { FaGithub } from 'react-icons/fa';
+import { Canvas } from '@react-three/fiber';
+import { OrbitControls, Float, Line, Html, Box, Cylinder, Plane } from '@react-three/drei';
 import Navbar from '../../components/public/Navbar';
 import Button from '../../components/ui/Button';
 
@@ -91,10 +93,11 @@ const projectsData = [
 const ProjectDetail = () => {
   const { id } = useParams();
   const [activeTab, setActiveTab] = useState('Overview');
+  const [show3DDemo, setShow3DDemo] = useState(false);
 
   const project = projectsData.find(p => p.id === id) || projectsData[1]; // Fallback to PIM if not found
 
-  const tabs = ['Overview', 'Features', 'Architecture', 'Tech Stack', 'Screenshots', 'Video'];
+  const tabs = ['Overview', 'Features', 'Workflow', 'Architecture', 'Tech Stack', 'Screenshots', 'Video'];
 
   return (
     <div className="min-h-screen bg-[#020617] text-white selection:bg-primary/30">
@@ -142,12 +145,14 @@ const ProjectDetail = () => {
             </div>
 
             <div className="flex flex-wrap gap-4">
-              <Button variant="primary" className="rounded-full neon-glow hover:scale-105 transition-transform duration-300">
+              <Button onClick={() => setShow3DDemo(true)} variant="primary" className="rounded-full neon-glow hover:scale-105 transition-transform duration-300">
                 <ExternalLink size={18} className="mr-2" /> Live Demo
               </Button>
-              <Button variant="secondary" className="rounded-full hover:scale-105 transition-transform duration-300 bg-slate-800/50 backdrop-blur-md border border-slate-700 hover:border-slate-500">
-                <FaGithub size={18} className="mr-2" /> View Code
-              </Button>
+              <a href="https://github.com/liyaqath7890/portfolio" target="_blank" rel="noopener noreferrer">
+                <Button variant="secondary" className="rounded-full hover:scale-105 transition-transform duration-300 bg-slate-800/50 backdrop-blur-md border border-slate-700 hover:border-slate-500">
+                  <FaGithub size={18} className="mr-2" /> View Code
+                </Button>
+              </a>
             </div>
           </motion.div>
 
@@ -231,6 +236,94 @@ const ProjectDetail = () => {
                     ))}
                   </ul>
                 )}
+                
+                {activeTab === 'Workflow' && (
+                  <div className="mt-8 space-y-6">
+                    <div className="flex flex-col gap-6 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-slate-700 before:to-transparent">
+                      <div className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                        <div className="flex items-center justify-center w-10 h-10 rounded-full border border-primary bg-slate-900 text-primary shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
+                          1
+                        </div>
+                        <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-4 rounded-xl border border-slate-700 bg-slate-800/50 shadow">
+                          <div className="flex items-center justify-between space-x-2 mb-1">
+                            <div className="font-bold text-white">Requirements & Planning</div>
+                          </div>
+                          <div className="text-slate-400">Collaborated closely with stakeholders to map out user journeys, define architecture, and setup initial database schemas.</div>
+                        </div>
+                      </div>
+
+                      <div className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                        <div className="flex items-center justify-center w-10 h-10 rounded-full border border-primary bg-slate-900 text-primary shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
+                          2
+                        </div>
+                        <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-4 rounded-xl border border-slate-700 bg-slate-800/50 shadow">
+                          <div className="flex items-center justify-between space-x-2 mb-1">
+                            <div className="font-bold text-white">Design & Prototyping</div>
+                          </div>
+                          <div className="text-slate-400">Created high-fidelity wireframes in Figma. Established a design system with reusable Tailwind components for consistency.</div>
+                        </div>
+                      </div>
+
+                      <div className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                        <div className="flex items-center justify-center w-10 h-10 rounded-full border border-primary bg-slate-900 text-primary shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
+                          3
+                        </div>
+                        <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-4 rounded-xl border border-slate-700 bg-slate-800/50 shadow">
+                          <div className="flex items-center justify-between space-x-2 mb-1">
+                            <div className="font-bold text-white">Backend & APIs</div>
+                          </div>
+                          <div className="text-slate-400">Developed robust REST APIs using Node/Express. Implemented JWT auth, rate limiting, and complex aggregations.</div>
+                        </div>
+                      </div>
+
+                      <div className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                        <div className="flex items-center justify-center w-10 h-10 rounded-full border border-primary bg-slate-900 text-primary shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
+                          4
+                        </div>
+                        <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-4 rounded-xl border border-slate-700 bg-slate-800/50 shadow">
+                          <div className="flex items-center justify-between space-x-2 mb-1">
+                            <div className="font-bold text-white">Frontend Integration</div>
+                          </div>
+                          <div className="text-slate-400">Connected React components to the backend APIs using Redux Toolkit/React Query. Optimized rendering for performance.</div>
+                        </div>
+                      </div>
+
+                      <div className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                        <div className="flex items-center justify-center w-10 h-10 rounded-full border border-primary bg-slate-900 text-primary shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
+                          5
+                        </div>
+                        <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-4 rounded-xl border border-slate-700 bg-slate-800/50 shadow">
+                          <div className="flex items-center justify-between space-x-2 mb-1">
+                            <div className="font-bold text-white">Deployment & CI/CD</div>
+                          </div>
+                          <div className="text-slate-400">Set up GitHub Actions for automated testing. Deployed frontend to Vercel and backend to Render/AWS.</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {activeTab === 'Screenshots' && (
+                  <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {[1, 2, 3, 4].map((num) => (
+                      <div key={num} className="relative group overflow-hidden rounded-xl border border-slate-700/50 bg-slate-800/20 aspect-video flex items-center justify-center">
+                        <div className="absolute inset-0 bg-primary/5 group-hover:bg-primary/20 transition-colors duration-300 z-10"></div>
+                        <ImageIcon size={48} className="text-slate-600 group-hover:scale-110 group-hover:text-primary transition-all duration-300 relative z-20 opacity-50" />
+                        <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-slate-900 to-transparent z-30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-sm font-medium">Screenshot {num} Placeholder</div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {activeTab === 'Video' && (
+                  <div className="mt-8 relative overflow-hidden rounded-2xl border border-slate-700/50 bg-slate-800/30 aspect-video flex items-center justify-center group cursor-pointer shadow-2xl">
+                    <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 to-purple-600/10"></div>
+                    <PlayCircle size={64} className="text-white/50 group-hover:text-primary group-hover:scale-110 transition-all duration-300 relative z-10 drop-shadow-[0_0_15px_rgba(56,189,248,0.5)]" />
+                    <div className="absolute bottom-6 left-6 text-white font-bold tracking-wide z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      Watch Walkthrough
+                    </div>
+                  </div>
+                )}
               </div>
             </motion.div>
           </div>
@@ -265,8 +358,150 @@ const ProjectDetail = () => {
             </motion.div>
           </div>
           
+          
         </div>
       </main>
+
+      {/* 3D Demo Modal */}
+      <AnimatePresence>
+        {show3DDemo && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/90 backdrop-blur-sm"
+          >
+            <div className="absolute inset-0 cursor-pointer" onClick={() => setShow3DDemo(false)}></div>
+            <motion.div 
+              initial={{ scale: 0.9, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 20 }}
+              className="relative w-[90vw] h-[80vh] max-w-6xl rounded-3xl overflow-hidden glass border border-slate-700/50 shadow-[0_0_50px_rgba(56,189,248,0.2)] bg-[#040814]"
+            >
+              {/* Header */}
+              <div className="absolute top-0 left-0 right-0 p-6 flex justify-between items-center z-20 bg-gradient-to-b from-slate-900/80 to-transparent">
+                <div>
+                  <h3 className="text-xl font-bold text-white tracking-wide">Workflow Simulation</h3>
+                  <p className="text-primary text-sm font-medium">Interactive 3D Data Flow</p>
+                </div>
+                <button 
+                  onClick={() => setShow3DDemo(false)}
+                  className="p-2 rounded-full bg-slate-800/50 text-slate-400 hover:text-white hover:bg-red-500/50 transition-colors border border-white/10 hover:border-red-500"
+                >
+                  <X size={24} />
+                </button>
+              </div>
+              
+              {/* 3D Canvas */}
+              <div className="w-full h-full relative z-10 cursor-move">
+                <Canvas camera={{ position: [10, 8, 10], fov: 40 }} shadows>
+                  <ambientLight intensity={0.2} />
+                  <pointLight position={[0, 5, 0]} intensity={1} color="#38bdf8" distance={20} />
+                  <spotLight position={[10, 15, 10]} intensity={1.5} color="#8b5cf6" angle={0.3} penumbra={1} castShadow />
+                  
+                  <group position={[0, -2, 0]}>
+                    {/* Motherboard Base */}
+                    <Box args={[12, 0.2, 12]} position={[0, -0.1, 0]} receiveShadow>
+                      <meshStandardMaterial color="#020617" metalness={0.8} roughness={0.2} />
+                    </Box>
+                    
+                    {/* Glowing Grid Lines on Base */}
+                    <gridHelper args={[12, 12, "#38bdf8", "#1e293b"]} position={[0, 0.01, 0]} />
+
+                    {/* Central CPU Core */}
+                    <group position={[0, 0.5, 0]}>
+                      <Cylinder args={[2, 2.2, 1, 8]} position={[0, 0, 0]} castShadow>
+                        <meshStandardMaterial color="#0f172a" metalness={0.9} roughness={0.1} />
+                      </Cylinder>
+                      <Cylinder args={[1.5, 1.5, 1.1, 8]} position={[0, 0, 0]}>
+                        <meshStandardMaterial color="#38bdf8" emissive="#38bdf8" emissiveIntensity={2} wireframe />
+                      </Cylinder>
+                      <Float speed={3} rotationIntensity={0.5} floatIntensity={1} position={[0, 1.5, 0]}>
+                        <Box args={[1, 1, 1]} rotation={[Math.PI/4, Math.PI/4, 0]}>
+                          <meshStandardMaterial color="#a78bfa" emissive="#8b5cf6" emissiveIntensity={1} wireframe />
+                        </Box>
+                      </Float>
+                    </group>
+
+                    {/* Dynamic Server Nodes based on Tech Stack */}
+                    {project.tech.map((tech, index) => {
+                      const angle = (index / project.tech.length) * Math.PI * 2;
+                      const radius = 4.5;
+                      const x = Math.cos(angle) * radius;
+                      const z = Math.sin(angle) * radius;
+                      
+                      const colors = ['#0ea5e9', '#8b5cf6', '#10b981', '#f59e0b', '#ec4899', '#3b82f6'];
+                      const color = colors[index % colors.length];
+
+                      return (
+                        <group key={tech} position={[x, 0, z]}>
+                          {/* Data Connection Line to Core */}
+                          <Line 
+                            points={[[0, 0.5, 0], [0, 0.1, 0], [x * 0.5, 0.1, z * 0.5], [x, 0.1, z]]} 
+                            color={color} 
+                            lineWidth={2} 
+                            dashed 
+                            dashScale={5} 
+                            dashSize={2} 
+                            dashOffset={index} 
+                          />
+                          
+                          {/* Server Rack */}
+                          <Box args={[1.2, 2, 1.2]} position={[0, 1, 0]} castShadow>
+                            <meshStandardMaterial color="#0f172a" metalness={0.7} roughness={0.2} />
+                          </Box>
+                          {/* Server Glowing Accents */}
+                          <Box args={[1.3, 0.1, 1.3]} position={[0, 0.5, 0]}>
+                            <meshStandardMaterial color={color} emissive={color} emissiveIntensity={1.5} />
+                          </Box>
+                          <Box args={[1.3, 0.1, 1.3]} position={[0, 1.5, 0]}>
+                            <meshStandardMaterial color={color} emissive={color} emissiveIntensity={1.5} />
+                          </Box>
+
+                          {/* Holographic Screen */}
+                          <Float speed={2} rotationIntensity={0} floatIntensity={0.5} position={[0, 3, 0]}>
+                            <Plane args={[2, 1]}>
+                              <meshStandardMaterial side={2} color={color} emissive={color} emissiveIntensity={0.2} transparent opacity={0.2} />
+                            </Plane>
+                            {/* Screen Frame */}
+                            <Line points={[[-1, -0.5, 0], [1, -0.5, 0], [1, 0.5, 0], [-1, 0.5, 0], [-1, -0.5, 0]]} color={color} lineWidth={1} />
+                            
+                            <Html transform center position={[0, 0, 0.05]}>
+                              <div className="flex flex-col items-center justify-center pointer-events-none select-none">
+                                <span className="text-[10px] text-slate-300 uppercase tracking-widest mb-1 opacity-80">Node Active</span>
+                                <div className="bg-slate-950/80 backdrop-blur-md px-4 py-1.5 border border-white/20 rounded shadow-[0_0_20px_rgba(0,0,0,0.8)] flex items-center gap-2">
+                                  <div className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: color, boxShadow: `0 0 10px ${color}` }}></div>
+                                  <span className="text-sm font-bold text-white tracking-wider whitespace-nowrap">{tech}</span>
+                                </div>
+                              </div>
+                            </Html>
+                          </Float>
+                        </group>
+                      );
+                    })}
+                  </group>
+
+                  <OrbitControls 
+                    enableZoom={true} 
+                    autoRotate 
+                    autoRotateSpeed={0.8} 
+                    maxPolarAngle={Math.PI / 2.2} 
+                    minPolarAngle={Math.PI / 6} 
+                    target={[0, -1, 0]}
+                  />
+                </Canvas>
+              </div>
+              
+              {/* Footer instructions */}
+              <div className="absolute bottom-6 left-0 right-0 text-center z-20 pointer-events-none">
+                <p className="inline-block px-4 py-2 rounded-full glass border border-white/5 text-slate-400 text-sm tracking-widest uppercase">
+                  Drag to rotate • Scroll to zoom
+                </p>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

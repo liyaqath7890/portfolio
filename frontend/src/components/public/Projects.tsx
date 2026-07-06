@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom';
 import GlassCard from '../ui/GlassCard';
 
 const projects = [
-  { id: 1, title: 'AI Job Platform', desc: 'AI-powered job matching platform', category: 'AI/ML', tech: 'MERN Stack', image: '/proj_ai_job.png' },
-  { id: 2, title: 'Product Information Management (PIM)', desc: 'Enterprise PIM solution', category: 'Management', tech: 'MERN Stack', image: '/proj_pim.png' },
-  { id: 3, title: 'Inventory Management', desc: 'Stock & warehouse management', category: 'Management', tech: 'MERN Stack', image: '/proj_inventory.png' },
-  { id: 4, title: 'School Management', desc: 'Complete school ERP system', category: 'SaaS', tech: 'MERN Stack', image: '/proj_school.png' },
-  { id: 5, title: 'Restaurant System', desc: 'Restaurant & order management', category: 'SaaS', tech: 'MERN Stack', image: '/proj_restaurant.png' },
-  { id: 6, title: 'Disaster Management', desc: 'Disaster response & tracking', category: 'Web Apps', tech: 'MERN Stack', image: '/proj_disaster.png' },
+  { id: 1, title: 'AI Job Platform', desc: 'An intelligent platform connecting top talent with the right opportunities using advanced neural networks and NLP algorithms for resume parsing and matching.', category: 'AI/ML', tech: 'MERN Stack', image: '/proj_ai_job.png' },
+  { id: 2, title: 'Product Information Management (PIM)', desc: 'A multi-tenant SaaS platform to manage product catalogs, variants, attributes, assets, and categories with role-based access control.', category: 'Management', tech: 'MERN Stack', image: '/proj_pim.png' },
+  { id: 3, title: 'Inventory Management', desc: 'A complete inventory tracking system with barcode scanning, automated reordering, and real-time analytics for medium to large warehouses.', category: 'Management', tech: 'MERN Stack', image: '/proj_inventory.png' },
+  { id: 4, title: 'School Management', desc: 'A comprehensive ERP handling student enrollments, attendance, grading, fee management, and parent-teacher communication portals.', category: 'SaaS', tech: 'MERN Stack', image: '/proj_school.png' },
+  { id: 5, title: 'Restaurant System', desc: 'A modern POS and table management system with kitchen display screens, online ordering integration, and inventory tracking.', category: 'SaaS', tech: 'MERN Stack', image: '/proj_restaurant.png' },
+  { id: 6, title: 'Disaster Management', desc: 'Real-time disaster reporting and resource allocation platform using GIS mapping, satellite data, and community-driven alerts.', category: 'Web Apps', tech: 'MERN Stack', image: '/proj_disaster.png' },
 ];
 
 const categories = ['All', 'SaaS', 'Management', 'AI/ML', 'Web Apps'];
@@ -82,7 +82,7 @@ const Projects = () => {
                   {/* Content Area */}
                   <div className="p-6 flex flex-col flex-grow relative z-10 bg-gradient-to-b from-transparent to-slate-900/50">
                     <h3 className="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">{project.title}</h3>
-                    <p className="text-slate-400 text-sm mb-4 flex-grow leading-relaxed">{project.desc}</p>
+                    <p className="text-slate-400 text-sm mb-4 flex-grow leading-relaxed line-clamp-3">{project.desc}</p>
                     <div className="flex items-center justify-between mt-4">
                       <span className="text-xs font-bold text-primary px-3 py-1 bg-primary/10 border border-primary/20 rounded-full shadow-[0_0_10px_rgba(56,189,248,0.1)]">
                         {project.tech}
