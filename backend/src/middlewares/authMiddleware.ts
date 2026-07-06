@@ -3,10 +3,7 @@ import { verifyToken } from '../utils/jwt';
 import { prisma } from '../config/db';
 
 export interface AuthRequest extends Request {
-  user?: {
-    id: string;
-    role: string;
-  };
+  user?: any;
 }
 
 export const protect = async (req: AuthRequest, res: Response, next: NextFunction) => {
