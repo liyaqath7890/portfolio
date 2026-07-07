@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useParams } from 'react-router-dom';
-import { ArrowLeft, ExternalLink, X, Image as ImageIcon, PlayCircle } from 'lucide-react';
+import { ArrowLeft, ExternalLink, X, PlayCircle } from 'lucide-react';
 import { FaGithub } from 'react-icons/fa';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Float, Line, Html, Box, Cylinder, Plane } from '@react-three/drei';
@@ -10,78 +10,78 @@ import Button from '../../components/ui/Button';
 
 // Local mock data until API is integrated
 const projectsData = [
-  { 
-    id: '1', 
-    title: 'AI Job Platform', 
+  {
+    id: '1',
+    title: 'AI Job Platform',
     subtitle: 'AI-powered job matching platform',
-    desc: 'An intelligent platform connecting top talent with the right opportunities using advanced neural networks and NLP algorithms.', 
-    category: 'AI/ML', 
-    tech: ['React', 'Node.js', 'MongoDB', 'TensorFlow', 'TypeScript'], 
+    desc: 'An intelligent platform connecting top talent with the right opportunities using advanced neural networks and NLP algorithms.',
+    category: 'AI/ML',
+    tech: ['React', 'Node.js', 'MongoDB', 'TensorFlow', 'TypeScript'],
     image: '/proj_ai_job.png',
     duration: 'Mar 2024 - Present',
     role: 'Lead AI Engineer',
     teamSize: '3 Members',
     deployment: 'AWS & Vercel'
   },
-  { 
-    id: '2', 
-    title: 'Product Information Management', 
+  {
+    id: '2',
+    title: 'Product Information Management',
     subtitle: 'Enterprise PIM Solution',
-    desc: 'A multi-tenant SaaS platform to manage product catalogs, variants, attributes, assets, and categories with role-based access control and integrated inventory management.', 
-    category: 'Management', 
-    tech: ['React', 'Node.js', 'TypeScript', 'PostgreSQL', 'Tailwind CSS'], 
+    desc: 'A multi-tenant SaaS platform to manage product catalogs, variants, attributes, assets, and categories with role-based access control and integrated inventory management.',
+    category: 'Management',
+    tech: ['React', 'Node.js', 'TypeScript', 'PostgreSQL', 'Tailwind CSS'],
     image: '/proj_pim.png',
     duration: 'Jan 2024 - Mar 2024',
     role: 'Lead Full Stack Developer',
     teamSize: '4 Members',
     deployment: 'Vercel & Render'
   },
-  { 
-    id: '3', 
-    title: 'Inventory Management', 
+  {
+    id: '3',
+    title: 'Inventory Management',
     subtitle: 'Stock & warehouse management',
-    desc: 'A complete inventory tracking system with barcode scanning, automated reordering, and real-time analytics for medium to large warehouses.', 
-    category: 'Management', 
-    tech: ['React', 'Express', 'MongoDB', 'Redis', 'Tailwind CSS'], 
+    desc: 'A complete inventory tracking system with barcode scanning, automated reordering, and real-time analytics for medium to large warehouses.',
+    category: 'Management',
+    tech: ['React', 'Express', 'MongoDB', 'Redis', 'Tailwind CSS'],
     image: '/proj_inventory.png',
     duration: 'Nov 2023 - Jan 2024',
     role: 'Full Stack Developer',
     teamSize: '2 Members',
     deployment: 'DigitalOcean'
   },
-  { 
-    id: '4', 
-    title: 'School Management', 
+  {
+    id: '4',
+    title: 'School Management',
     subtitle: 'Complete school ERP system',
-    desc: 'A comprehensive ERP handling student enrollments, attendance, grading, fee management, and parent-teacher communication portals.', 
-    category: 'SaaS', 
-    tech: ['Next.js', 'NestJS', 'PostgreSQL', 'Prisma', 'Stripe'], 
+    desc: 'A comprehensive ERP handling student enrollments, attendance, grading, fee management, and parent-teacher communication portals.',
+    category: 'SaaS',
+    tech: ['Next.js', 'NestJS', 'PostgreSQL', 'Prisma', 'Stripe'],
     image: '/proj_school.png',
     duration: 'Aug 2023 - Nov 2023',
     role: 'Backend Developer',
     teamSize: '5 Members',
     deployment: 'AWS ECS'
   },
-  { 
-    id: '5', 
-    title: 'Restaurant System', 
+  {
+    id: '5',
+    title: 'Restaurant System',
     subtitle: 'Restaurant & order management',
-    desc: 'A modern POS and table management system with kitchen display screens, online ordering integration, and inventory tracking.', 
-    category: 'SaaS', 
-    tech: ['React Native', 'Node.js', 'MongoDB', 'Socket.io'], 
+    desc: 'A modern POS and table management system with kitchen display screens, online ordering integration, and inventory tracking.',
+    category: 'SaaS',
+    tech: ['React Native', 'Node.js', 'MongoDB', 'Socket.io'],
     image: '/proj_restaurant.png',
     duration: 'May 2023 - Aug 2023',
     role: 'Full Stack Developer',
     teamSize: '3 Members',
     deployment: 'Heroku & Vercel'
   },
-  { 
-    id: '6', 
-    title: 'Disaster Management', 
+  {
+    id: '6',
+    title: 'Disaster Management',
     subtitle: 'Disaster response & tracking',
-    desc: 'Real-time disaster reporting and resource allocation platform using GIS mapping, satellite data, and community-driven alerts.', 
-    category: 'Web Apps', 
-    tech: ['React', 'Django', 'PostgreSQL', 'Mapbox', 'WebSockets'], 
+    desc: 'Real-time disaster reporting and resource allocation platform using GIS mapping, satellite data, and community-driven alerts.',
+    category: 'Web Apps',
+    tech: ['React', 'Django', 'PostgreSQL', 'Mapbox', 'WebSockets'],
     image: '/proj_disaster.png',
     duration: 'Feb 2023 - May 2023',
     role: 'Frontend Engineer',
@@ -102,7 +102,7 @@ const ProjectDetail = () => {
   return (
     <div className="min-h-screen bg-[#020617] text-white selection:bg-primary/30">
       <Navbar />
-      
+
       {/* Background Ambience */}
       <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
         <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-primary/10 blur-[120px]"></div>
@@ -111,7 +111,7 @@ const ProjectDetail = () => {
       </div>
 
       <main className="pt-28 pb-20 px-4 md:px-12 lg:px-24 max-w-7xl mx-auto relative z-10">
-        
+
         {/* Back Link */}
         <Link to="/#projects" className="inline-flex items-center text-slate-400 hover:text-primary transition-colors mb-8 group">
           <ArrowLeft size={16} className="mr-2 group-hover:-translate-x-1 transition-transform" />
@@ -120,7 +120,7 @@ const ProjectDetail = () => {
 
         {/* Header Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
@@ -131,7 +131,7 @@ const ProjectDetail = () => {
             <span className="inline-block px-4 py-1.5 bg-slate-800/50 backdrop-blur-md text-slate-300 rounded-full text-sm font-medium mb-6 border border-slate-700/50 shadow-sm">
               {project.subtitle}
             </span>
-            
+
             <p className="text-slate-400 text-lg mb-8 leading-relaxed max-w-xl">
               {project.desc}
             </p>
@@ -157,28 +157,28 @@ const ProjectDetail = () => {
           </motion.div>
 
           {/* Premium Image with Cinematic Effects */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, scale: 0.9, y: 30 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="w-full relative flex items-center justify-center group perspective-[1000px]"
           >
             {/* Cinematic Bloom Behind Illustration */}
-            <motion.div 
+            <motion.div
               animate={{ opacity: [0.3, 0.6, 0.3], scale: [0.9, 1.1, 0.9] }}
               transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
               className="absolute inset-0 bg-primary/20 blur-[100px] rounded-full mix-blend-screen"
             ></motion.div>
-            
+
             <motion.div
               animate={{ y: [0, -15, 0] }}
               transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
               whileHover={{ scale: 1.05, rotateY: -5, rotateX: 5 }}
               className="relative z-10 w-[110%] h-auto drop-shadow-[0_20px_40px_rgba(56,189,248,0.25)]"
             >
-              <img 
-                src={project.image} 
-                alt={project.title} 
+              <img
+                src={project.image}
+                alt={project.title}
                 className="w-full h-full object-contain"
                 style={{ filter: 'contrast(1.1) brightness(1.1)' }}
               />
@@ -188,18 +188,17 @@ const ProjectDetail = () => {
 
         {/* Tabs & Content */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mt-24">
-          
+
           <div className="lg:col-span-2">
             <div className="flex overflow-x-auto border-b border-slate-800/50 mb-8 pb-2 scrollbar-hide gap-2">
               {tabs.map(tab => (
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
-                  className={`whitespace-nowrap px-6 py-3 font-medium rounded-t-lg transition-all duration-300 ${
-                    activeTab === tab 
-                      ? 'bg-slate-800/40 text-primary border-b-2 border-primary neon-text' 
+                  className={`whitespace-nowrap px-6 py-3 font-medium rounded-t-lg transition-all duration-300 ${activeTab === tab
+                      ? 'bg-slate-800/40 text-primary border-b-2 border-primary neon-text'
                       : 'border-b-2 border-transparent text-slate-400 hover:text-white hover:bg-slate-800/20'
-                  }`}
+                    }`}
                 >
                   {tab}
                 </button>
@@ -217,7 +216,7 @@ const ProjectDetail = () => {
                 <span className="w-8 h-1 bg-primary mr-3 rounded-full shadow-[0_0_10px_rgba(56,189,248,0.8)]"></span>
                 {activeTab}
               </h2>
-              
+
               <div className="prose prose-invert prose-lg max-w-none text-slate-300">
                 <p className="leading-relaxed">
                   {project.desc}
@@ -225,7 +224,7 @@ const ProjectDetail = () => {
                 <p className="leading-relaxed mt-4">
                   Built to scale, this application utilizes modern cloud infrastructure and robust backend services to deliver a seamless user experience. By heavily optimizing database queries and utilizing robust caching mechanisms, the application achieves extremely low latency.
                 </p>
-                
+
                 {activeTab === 'Features' && (
                   <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8 list-none pl-0">
                     {['Real-time Analytics', 'Role-Based Access Control', 'Multi-tenant Architecture', 'Automated Workflows', 'RESTful API Integration', 'Responsive Dashboard'].map((feature, idx) => (
@@ -236,7 +235,7 @@ const ProjectDetail = () => {
                     ))}
                   </ul>
                 )}
-                
+
                 {activeTab === 'Workflow' && (
                   <div className="mt-8 space-y-6">
                     <div className="flex flex-col gap-6 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-slate-700 before:to-transparent">
@@ -304,14 +303,56 @@ const ProjectDetail = () => {
                 )}
 
                 {activeTab === 'Screenshots' && (
-                  <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {[1, 2, 3, 4].map((num) => (
-                      <div key={num} className="relative group overflow-hidden rounded-xl border border-slate-700/50 bg-slate-800/20 aspect-video flex items-center justify-center">
-                        <div className="absolute inset-0 bg-primary/5 group-hover:bg-primary/20 transition-colors duration-300 z-10"></div>
-                        <ImageIcon size={48} className="text-slate-600 group-hover:scale-110 group-hover:text-primary transition-all duration-300 relative z-20 opacity-50" />
-                        <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-slate-900 to-transparent z-30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-sm font-medium">Screenshot {num} Placeholder</div>
+                  <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+                    {/* Desktop Browser Frame */}
+                    <div className="space-y-4">
+                      <h4 className="text-sm font-semibold uppercase tracking-wider text-slate-400">Desktop Web Application View</h4>
+                      <div className="bg-slate-950 rounded-2xl border border-white/10 overflow-hidden shadow-2xl">
+                        {/* Browser Top Bar */}
+                        <div className="flex items-center gap-2 px-5 py-3 bg-slate-900 border-b border-white/5">
+                          <span className="w-3 h-3 rounded-full bg-red-500/80"></span>
+                          <span className="w-3 h-3 rounded-full bg-yellow-500/80"></span>
+                          <span className="w-3 h-3 rounded-full bg-green-500/80"></span>
+                          <span className="ml-4 text-xs font-mono text-slate-500 bg-slate-950/80 px-4 py-1 rounded-md w-full max-w-[240px] text-center truncate">
+                            https://{project.title.toLowerCase().replace(/[^a-z0-9]/g, '')}.com
+                          </span>
+                        </div>
+                        {/* Browser Window Content */}
+                        <div className="p-1 bg-slate-900/30 aspect-[16/10] overflow-hidden">
+                          <img 
+                            src={project.image} 
+                            alt={`${project.title} Web Application`} 
+                            className="w-full h-full object-cover rounded-lg hover:scale-[1.02] transition-transform duration-500" 
+                            onError={(e) => {
+                              e.currentTarget.src = 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80';
+                            }}
+                          />
+                        </div>
                       </div>
-                    ))}
+                    </div>
+
+                    {/* Mobile Phone Mockup Frame */}
+                    <div className="space-y-4 flex flex-col items-center lg:items-start">
+                      <h4 className="text-sm font-semibold uppercase tracking-wider text-slate-400 w-full text-center lg:text-left">Mobile Responsive View</h4>
+                      
+                      <div className="relative mx-auto lg:mx-0 border-slate-800 bg-slate-900 border-[10px] rounded-[2.5rem] h-[460px] w-[230px] shadow-2xl overflow-hidden border-t-[12px] border-b-[12px]">
+                        {/* Speaker Notch */}
+                        <div className="absolute top-0 inset-x-0 h-4 bg-slate-900 rounded-b-xl z-20 flex justify-center items-center">
+                          <span className="w-16 h-1 bg-slate-700 rounded-full"></span>
+                        </div>
+                        {/* Screen Content */}
+                        <div className="w-full h-full bg-slate-950 overflow-hidden flex items-center justify-center p-0.5">
+                          <img 
+                            src={project.image} 
+                            alt={`${project.title} Mobile Responsive`} 
+                            className="w-full h-full object-cover rounded-[1.8rem] hover:scale-[1.05] transition-transform duration-500"
+                            onError={(e) => {
+                              e.currentTarget.src = 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80';
+                            }}
+                          />
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 )}
 
@@ -330,7 +371,7 @@ const ProjectDetail = () => {
 
           {/* Right Sidebar Metadata */}
           <div className="space-y-6">
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
@@ -338,7 +379,7 @@ const ProjectDetail = () => {
             >
               {/* Subtle top glow line */}
               <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary/50 to-transparent"></div>
-              
+
               <div className="flex justify-between items-center border-b border-slate-800/50 pb-4">
                 <span className="text-slate-400 text-sm">Duration</span>
                 <span className="text-white font-medium text-right">{project.duration}</span>
@@ -357,22 +398,22 @@ const ProjectDetail = () => {
               </div>
             </motion.div>
           </div>
-          
-          
+
+
         </div>
       </main>
 
       {/* 3D Demo Modal */}
       <AnimatePresence>
         {show3DDemo && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/90 backdrop-blur-sm"
           >
             <div className="absolute inset-0 cursor-pointer" onClick={() => setShow3DDemo(false)}></div>
-            <motion.div 
+            <motion.div
               initial={{ scale: 0.9, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
@@ -384,27 +425,27 @@ const ProjectDetail = () => {
                   <h3 className="text-xl font-bold text-white tracking-wide">Workflow Simulation</h3>
                   <p className="text-primary text-sm font-medium">Interactive 3D Data Flow</p>
                 </div>
-                <button 
+                <button
                   onClick={() => setShow3DDemo(false)}
                   className="p-2 rounded-full bg-slate-800/50 text-slate-400 hover:text-white hover:bg-red-500/50 transition-colors border border-white/10 hover:border-red-500"
                 >
                   <X size={24} />
                 </button>
               </div>
-              
+
               {/* 3D Canvas */}
               <div className="w-full h-full relative z-10 cursor-move">
                 <Canvas camera={{ position: [10, 8, 10], fov: 40 }} shadows>
                   <ambientLight intensity={0.2} />
                   <pointLight position={[0, 5, 0]} intensity={1} color="#38bdf8" distance={20} />
                   <spotLight position={[10, 15, 10]} intensity={1.5} color="#8b5cf6" angle={0.3} penumbra={1} castShadow />
-                  
+
                   <group position={[0, -2, 0]}>
                     {/* Motherboard Base */}
                     <Box args={[12, 0.2, 12]} position={[0, -0.1, 0]} receiveShadow>
                       <meshStandardMaterial color="#020617" metalness={0.8} roughness={0.2} />
                     </Box>
-                    
+
                     {/* Glowing Grid Lines on Base */}
                     <gridHelper args={[12, 12, "#38bdf8", "#1e293b"]} position={[0, 0.01, 0]} />
 
@@ -417,7 +458,7 @@ const ProjectDetail = () => {
                         <meshStandardMaterial color="#38bdf8" emissive="#38bdf8" emissiveIntensity={2} wireframe />
                       </Cylinder>
                       <Float speed={3} rotationIntensity={0.5} floatIntensity={1} position={[0, 1.5, 0]}>
-                        <Box args={[1, 1, 1]} rotation={[Math.PI/4, Math.PI/4, 0]}>
+                        <Box args={[1, 1, 1]} rotation={[Math.PI / 4, Math.PI / 4, 0]}>
                           <meshStandardMaterial color="#a78bfa" emissive="#8b5cf6" emissiveIntensity={1} wireframe />
                         </Box>
                       </Float>
@@ -429,23 +470,23 @@ const ProjectDetail = () => {
                       const radius = 4.5;
                       const x = Math.cos(angle) * radius;
                       const z = Math.sin(angle) * radius;
-                      
+
                       const colors = ['#0ea5e9', '#8b5cf6', '#10b981', '#f59e0b', '#ec4899', '#3b82f6'];
                       const color = colors[index % colors.length];
 
                       return (
                         <group key={tech} position={[x, 0, z]}>
                           {/* Data Connection Line to Core */}
-                          <Line 
-                            points={[[0, 0.5, 0], [0, 0.1, 0], [x * 0.5, 0.1, z * 0.5], [x, 0.1, z]]} 
-                            color={color} 
-                            lineWidth={2} 
-                            dashed 
-                            dashScale={5} 
-                            dashSize={2} 
-                            dashOffset={index} 
+                          <Line
+                            points={[[0, 0.5, 0], [0, 0.1, 0], [x * 0.5, 0.1, z * 0.5], [x, 0.1, z]]}
+                            color={color}
+                            lineWidth={2}
+                            dashed
+                            dashScale={5}
+                            dashSize={2}
+                            dashOffset={index}
                           />
-                          
+
                           {/* Server Rack */}
                           <Box args={[1.2, 2, 1.2]} position={[0, 1, 0]} castShadow>
                             <meshStandardMaterial color="#0f172a" metalness={0.7} roughness={0.2} />
@@ -465,7 +506,7 @@ const ProjectDetail = () => {
                             </Plane>
                             {/* Screen Frame */}
                             <Line points={[[-1, -0.5, 0], [1, -0.5, 0], [1, 0.5, 0], [-1, 0.5, 0], [-1, -0.5, 0]]} color={color} lineWidth={1} />
-                            
+
                             <Html transform center position={[0, 0, 0.05]}>
                               <div className="flex flex-col items-center justify-center pointer-events-none select-none">
                                 <span className="text-[10px] text-slate-300 uppercase tracking-widest mb-1 opacity-80">Node Active</span>
@@ -481,17 +522,17 @@ const ProjectDetail = () => {
                     })}
                   </group>
 
-                  <OrbitControls 
-                    enableZoom={true} 
-                    autoRotate 
-                    autoRotateSpeed={0.8} 
-                    maxPolarAngle={Math.PI / 2.2} 
-                    minPolarAngle={Math.PI / 6} 
+                  <OrbitControls
+                    enableZoom={true}
+                    autoRotate
+                    autoRotateSpeed={0.8}
+                    maxPolarAngle={Math.PI / 2.2}
+                    minPolarAngle={Math.PI / 6}
                     target={[0, -1, 0]}
                   />
                 </Canvas>
               </div>
-              
+
               {/* Footer instructions */}
               <div className="absolute bottom-6 left-0 right-0 text-center z-20 pointer-events-none">
                 <p className="inline-block px-4 py-2 rounded-full glass border border-white/5 text-slate-400 text-sm tracking-widest uppercase">

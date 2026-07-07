@@ -33,7 +33,7 @@ const About3D = () => {
               </RoundedBox>
               {/* Glowing Edge on Base */}
               <RoundedBox args={[3.85, 0.02, 2.55]} radius={0.05} position={[0, -0.05, 0]}>
-                 <meshStandardMaterial color="#8B5CF6" emissive="#8B5CF6" emissiveIntensity={4} toneMapped={false} />
+                 <meshStandardMaterial color="#8B5CF6" emissive="#8B5CF6" emissiveIntensity={1.5} toneMapped={false} />
               </RoundedBox>
               {/* Trackpad */}
               <Plane args={[1.0, 0.6]} position={[0, 0.06, 1.7]} rotation={[-Math.PI/2, 0, 0]}>
@@ -63,7 +63,7 @@ const About3D = () => {
             {[...Array(50)].map((_, i) => (
                <Float key={`burst-${i}`} speed={2 + Math.random()*2} rotationIntensity={3} floatIntensity={5} position={[(Math.random() - 0.5) * 6, 1 + Math.random() * 5, (Math.random() - 0.5) * 4]}>
                   <Sphere args={[0.03 + Math.random()*0.05, 8, 8]}>
-                    <meshStandardMaterial color="#38BDF8" emissive="#38BDF8" emissiveIntensity={6} toneMapped={false} />
+                    <meshStandardMaterial color="#38BDF8" emissive="#38BDF8" emissiveIntensity={2.0} toneMapped={false} />
                   </Sphere>
                </Float>
             ))}
@@ -86,11 +86,11 @@ const About3D = () => {
                   </RoundedBox>
                   {/* Glowing Edge */}
                   <RoundedBox args={[1.45, 1.45, 0.05]} radius={0.15}>
-                    <meshStandardMaterial color={icon.color} emissive={icon.color} emissiveIntensity={3} transparent opacity={0.8} toneMapped={false} />
+                    <meshStandardMaterial color={icon.color} emissive={icon.color} emissiveIntensity={1.0} transparent opacity={0.8} toneMapped={false} />
                   </RoundedBox>
                   {/* Inner Icon Representation */}
                   <Plane args={[0.6, 0.6]} position={[0, 0.2, 0.06]}>
-                     <meshStandardMaterial color={icon.color} emissive={icon.color} emissiveIntensity={5} toneMapped={false} />
+                     <meshStandardMaterial color={icon.color} emissive={icon.color} emissiveIntensity={1.5} toneMapped={false} />
                   </Plane>
                   <Text position={[0, -0.35, 0.06]} fontSize={0.22} color="#ffffff" material-toneMapped={false}>
                     {icon.label}

@@ -128,9 +128,19 @@ npm run db:migrate</code></pre>
   }
 ];
 
+interface BlogType {
+  id: string;
+  title: string;
+  date: string;
+  readTime: string;
+  image: string;
+  category: string;
+  content: string;
+}
+
 const BlogPost = () => {
   const { id } = useParams();
-  const [blog, setBlog] = useState(null);
+  const [blog, setBlog] = useState<BlogType | null>(null);
 
   useEffect(() => {
     // In a real app, this would be an API call

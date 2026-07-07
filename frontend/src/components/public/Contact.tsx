@@ -1,11 +1,9 @@
-import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Briefcase, Loader2 } from 'lucide-react';
+import { Mail, Phone, MapPin, Briefcase } from 'lucide-react';
 import GlassCard from '../ui/GlassCard';
-import Button from '../ui/Button';
 import { global3DTunnel } from '../3d/Global3DEngine';
 import { Float, Sphere, MeshDistortMaterial } from '@react-three/drei';
-import { Canvas } from '@react-three/fiber';
+import { FaWhatsapp } from 'react-icons/fa';
 
 const Contact3D = () => {
   return (
@@ -41,32 +39,18 @@ const Contact3D = () => {
 };
 
 const Contact = () => {
-  const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
-  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const phoneNumber = '917795478115';
+  const whatsappMessage = `Hi Ali,
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
-  };
+I visited your portfolio website and was impressed with your work and projects.
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setStatus('submitting');
-    try {
-      const res = await fetch('http://localhost:5000/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
-      if (res.ok) {
-        setStatus('success');
-      } else {
-        setStatus('error');
-      }
-    } catch (err) {
-      console.error(err);
-      setStatus('error');
-    }
-  };
+I would like to discuss a potential opportunity with you. Please let me know when you're available.
+
+Looking forward to hearing from you.
+
+Thank you!`;
+
+  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(whatsappMessage)}`;
 
   return (
     <section id="contact" className="relative w-full py-24 px-4 md:px-12 lg:px-24 bg-slate-900/20 overflow-hidden">
@@ -81,7 +65,7 @@ const Contact = () => {
           <p className="text-slate-400 max-w-2xl">Have a project in mind or want to work together? Feel free to reach out!</p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           
           {/* Contact Info */}
           <motion.div 
@@ -132,98 +116,61 @@ const Contact = () => {
             </div>
           </motion.div>
 
-          {/* Contact Form */}
+          {/* Premium WhatsApp Chat Card */}
           <motion.div 
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <GlassCard className="p-8">
-              {status === 'success' ? (
-                <div className="flex flex-col items-center justify-center py-10 text-center animate-fade-in">
-                  <div className="h-48 w-full mb-6 relative">
-                    <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
-                      <ambientLight intensity={0.5} />
-                      <directionalLight position={[2, 2, 2]} intensity={1.5} color="#22C55E" />
-                      <Float speed={2} rotationIntensity={1.5} floatIntensity={1.5}>
-                        <Sphere args={[1.5, 32, 32]}>
-                          <meshStandardMaterial color="#020617" emissive="#22C55E" emissiveIntensity={0.8} wireframe />
-                        </Sphere>
-                      </Float>
-                    </Canvas>
+            <GlassCard className="p-8 border border-white/5 relative overflow-hidden flex flex-col space-y-6">
+              {/* Card Header */}
+              <div className="flex items-center justify-between border-b border-white/10 pb-4">
+                <div className="flex items-center gap-3">
+                  <div className="relative">
+                    <div className="w-12 h-12 rounded-full bg-primary/20 border border-primary/50 flex items-center justify-center text-primary font-bold text-lg">
+                      LA
+                    </div>
+                    {/* Pulsing dot indicator */}
+                    <span className="absolute bottom-0 right-0 w-3.5 h-3.5 rounded-full bg-[#25D366] border-2 border-slate-900 animate-pulse shadow-[0_0_8px_#25D366]"></span>
                   </div>
-                  <h3 className="text-3xl font-bold text-white mb-2 neon-text">Thank You!</h3>
-                  <p className="text-slate-400 mb-8">Your message has been sent successfully. I'll get back to you soon.</p>
-                  <Button 
-                    variant="primary" 
-                    className="rounded-full px-8"
-                    onClick={() => { 
-                      setStatus('idle'); 
-                      setFormData({ name: '', email: '', subject: '', message: '' });
-                      window.scrollTo({ top: 0, behavior: 'smooth' });
-                    }}
-                  >
-                    Go to Dashboard
-                  </Button>
+                  <div>
+                    <h3 className="text-white font-semibold text-lg">Liyaqath Ali</h3>
+                    <p className="text-xs text-[#25D366] font-medium flex items-center gap-1">
+                      Active Now
+                    </p>
+                  </div>
                 </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  {status === 'error' && (
-                    <div className="p-3 bg-red-500/20 border border-red-500/50 rounded-lg text-red-200 text-sm text-center">
-                      Failed to send message. Please ensure the backend is running and try again.
-                    </div>
-                  )}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                      <input 
-                        type="text" 
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        required
-                        placeholder="Your Name" 
-                        className="w-full bg-slate-900/50 border border-slate-700 rounded-lg p-4 text-white focus:outline-none focus:border-primary transition placeholder-slate-500"
-                      />
-                    </div>
-                    <div>
-                      <input 
-                        type="email" 
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                        placeholder="Your Email" 
-                        className="w-full bg-slate-900/50 border border-slate-700 rounded-lg p-4 text-white focus:outline-none focus:border-primary transition placeholder-slate-500"
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <input 
-                      type="text" 
-                      name="subject"
-                      value={formData.subject}
-                      onChange={handleChange}
-                      placeholder="Subject" 
-                      className="w-full bg-slate-900/50 border border-slate-700 rounded-lg p-4 text-white focus:outline-none focus:border-primary transition placeholder-slate-500"
-                    />
-                  </div>
-                  <div>
-                    <textarea 
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      required
-                      placeholder="Your Message" 
-                      rows={5}
-                      className="w-full bg-slate-900/50 border border-slate-700 rounded-lg p-4 text-white focus:outline-none focus:border-primary transition placeholder-slate-500 resize-none"
-                    ></textarea>
-                  </div>
-                  <Button variant="primary" className="w-full py-4 rounded-lg flex items-center justify-center" disabled={status === 'submitting'}>
-                    {status === 'submitting' ? <Loader2 className="animate-spin mr-2" /> : 'Send Message'}
-                  </Button>
-                </form>
-              )}
+                <div className="px-3 py-1 rounded-full bg-[#25D366]/10 text-[#25D366] text-xs font-semibold uppercase tracking-wider">
+                  WhatsApp Direct
+                </div>
+              </div>
+
+              {/* Chat Message Preview */}
+              <div className="bg-slate-950/40 border border-white/5 rounded-2xl p-6 relative">
+                <span className="text-xs text-slate-500 font-semibold uppercase tracking-wider block mb-3">Pre-filled Message Preview</span>
+                <p className="text-slate-300 text-sm whitespace-pre-wrap leading-relaxed italic">
+                  "{whatsappMessage}"
+                </p>
+                <div className="absolute top-4 right-4 text-emerald-500/10">
+                  <FaWhatsapp size={64} />
+                </div>
+              </div>
+
+              {/* Action Button */}
+              <a 
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full py-4 rounded-xl bg-[#25D366] hover:bg-[#22c35e] text-slate-950 font-bold text-center flex items-center justify-center gap-3 transition-all duration-300 hover:scale-[1.02] active:scale-95 shadow-[0_0_20px_rgba(37,211,102,0.3)] hover:shadow-[0_0_30px_rgba(37,211,102,0.5)] cursor-pointer"
+              >
+                <FaWhatsapp size={22} />
+                <span>Start WhatsApp Chat</span>
+              </a>
+
+              <p className="text-center text-xs text-slate-500 font-medium">
+                Clicking the button will open WhatsApp with the conversation ready to send.
+              </p>
             </GlassCard>
           </motion.div>
           

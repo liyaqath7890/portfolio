@@ -2,7 +2,11 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, Menu, X } from 'lucide-react';
-import Button from '../ui/Button';
+import { FaWhatsapp } from 'react-icons/fa';
+
+const whatsappUrl = `https://wa.me/917795478115?text=${encodeURIComponent(
+  "Hi Ali,\n\nI visited your portfolio website and was impressed with your work and projects.\n\nI would like to discuss a potential opportunity with you. Please let me know when you're available.\n\nLooking forward to hearing from you.\n\nThank you!"
+)}`;
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -53,11 +57,15 @@ const Navbar = () => {
             <Search size={18} />
           </button>
           
-          <Link to="/contact" className="hidden sm:inline-flex">
-            <Button variant="primary" size="sm" className="rounded-full">
-              Hire Me
-            </Button>
-          </Link>
+          <a 
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#25D366] hover:bg-[#22c35e] text-slate-950 font-bold text-sm transition-all duration-300 hover:scale-105 active:scale-95 shadow-[0_0_15px_rgba(37,211,102,0.4)] hover:shadow-[0_0_25px_rgba(37,211,102,0.6)]"
+          >
+            <FaWhatsapp size={18} />
+            <span>Chat on WhatsApp</span>
+          </a>
 
           {/* Hamburger Menu (Mobile) */}
           <button 
@@ -105,11 +113,16 @@ const Navbar = () => {
               transition={{ delay: 0.4 }}
               className="mt-12 flex justify-center"
             >
-              <Link to="/contact" onClick={() => setIsOpen(false)}>
-                <Button variant="primary" size="lg" className="rounded-full px-8">
-                  Hire Me
-                </Button>
-              </Link>
+              <a 
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setIsOpen(false)}
+                className="inline-flex items-center gap-3 px-8 py-3.5 rounded-full bg-[#25D366] hover:bg-[#22c35e] text-slate-950 font-bold text-lg transition-all duration-300 hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(37,211,102,0.4)]"
+              >
+                <FaWhatsapp size={22} />
+                <span>Chat on WhatsApp</span>
+              </a>
             </motion.div>
           </motion.div>
         )}

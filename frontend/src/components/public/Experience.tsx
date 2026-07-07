@@ -48,7 +48,7 @@ const Experience3D = () => {
               </RoundedBox>
               {/* Purple Glowing Edge */}
               <RoundedBox args={[7.6, 0.1, 4.6]} radius={0.15} position={[0, -0.2, 0.2]}>
-                <meshStandardMaterial color="#A855F7" emissive="#A855F7" emissiveIntensity={4} transparent opacity={0.9} toneMapped={false} />
+                <meshStandardMaterial color="#A855F7" emissive="#A855F7" emissiveIntensity={1.5} transparent opacity={0.9} toneMapped={false} />
               </RoundedBox>
               
               {/* Top Base (Cyan Glow) */}
@@ -57,7 +57,7 @@ const Experience3D = () => {
               </RoundedBox>
               {/* Cyan Glowing Edge */}
               <RoundedBox args={[6.9, 0.1, 3.9]} radius={0.15} position={[0, 0.2, 0.2]}>
-                <meshStandardMaterial color="#06B6D4" emissive="#06B6D4" emissiveIntensity={5} transparent opacity={0.9} toneMapped={false} />
+                <meshStandardMaterial color="#06B6D4" emissive="#06B6D4" emissiveIntensity={1.5} transparent opacity={0.9} toneMapped={false} />
               </RoundedBox>
             </group>
 
@@ -77,7 +77,7 @@ const Experience3D = () => {
                   
                   {/* Top Glowing Edge / Cap */}
                   <RoundedBox args={[0.96, 0.05, 0.96]} radius={0.2} position={[0, 1.35, 0]}>
-                    <meshStandardMaterial color="#06B6D4" emissive="#06B6D4" emissiveIntensity={4} toneMapped={false} />
+                    <meshStandardMaterial color="#06B6D4" emissive="#06B6D4" emissiveIntensity={1.5} toneMapped={false} />
                   </RoundedBox>
 
                   {/* Floating Tech Label */}
@@ -96,7 +96,7 @@ const Experience3D = () => {
                   <group position={[0, 0.8, 0.48]}>
                     {/* Glowing Core */}
                     <Box args={[0.3, 0.3, 0.05]}>
-                      <meshStandardMaterial color={block.color} emissive={block.color} emissiveIntensity={6} toneMapped={false} />
+                      <meshStandardMaterial color={block.color} emissive={block.color} emissiveIntensity={2.0} toneMapped={false} />
                     </Box>
                     {/* Glass Shell over icon */}
                     <Box args={[0.35, 0.35, 0.08]}>
@@ -117,7 +117,7 @@ const Experience3D = () => {
               {/* Inner intense core for arrow */}
               <mesh>
                 <tubeGeometry args={[curve, 64, 0.08, 16, false]} />
-                <meshStandardMaterial color="#ffffff" emissive="#06B6D4" emissiveIntensity={12} toneMapped={false} />
+                <meshStandardMaterial color="#ffffff" emissive="#06B6D4" emissiveIntensity={3.0} toneMapped={false} />
               </mesh>
 
               {/* Arrow Head */}
@@ -128,7 +128,7 @@ const Experience3D = () => {
                 </Cylinder>
                 {/* Inner Glowing Core */}
                 <Cylinder args={[0, 0.3, 1.0, 32]} rotation={[0, 0, Math.PI / 2]}>
-                    <meshStandardMaterial color="#ffffff" emissive="#06B6D4" emissiveIntensity={12} toneMapped={false} />
+                    <meshStandardMaterial color="#ffffff" emissive="#06B6D4" emissiveIntensity={3.0} toneMapped={false} />
                 </Cylinder>
               </group>
             </group>
@@ -145,7 +145,7 @@ const Experience3D = () => {
             {[...Array(30)].map((_, i) => (
                <Float key={`glow-${i}`} speed={2 + i*0.5} rotationIntensity={2} floatIntensity={3} position={[(Math.random() - 0.5) * 12, Math.random() * 8, (Math.random() - 0.5) * 10]}>
                   <Sphere args={[0.03 + Math.random()*0.05, 8, 8]}>
-                    <meshStandardMaterial color={i % 2 === 0 ? "#06B6D4" : "#A855F7"} emissive={i % 2 === 0 ? "#06B6D4" : "#A855F7"} emissiveIntensity={8} toneMapped={false} />
+                    <meshStandardMaterial color={i % 2 === 0 ? "#06B6D4" : "#A855F7"} emissive={i % 2 === 0 ? "#06B6D4" : "#A855F7"} emissiveIntensity={2.5} toneMapped={false} />
                   </Sphere>
                </Float>
             ))}

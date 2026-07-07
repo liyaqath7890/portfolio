@@ -13,6 +13,9 @@ const HomePage = () => {
         {/* 3D Background */}
         <HeroScene />
 
+        {/* Dark Vignette Overlay for Readability */}
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-950/65 to-transparent pointer-events-none z-0" />
+
         {/* Main Content Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center z-10 w-full max-w-7xl mx-auto">
           
@@ -23,19 +26,19 @@ const HomePage = () => {
             transition={{ duration: 0.8, ease: 'easeOut' }}
             className="flex flex-col space-y-6"
           >
-            <div className="flex items-center gap-3 text-primary font-medium tracking-wider">
+            <div className="flex items-center gap-3 text-primary font-medium tracking-wider [text-shadow:_0_2px_4px_rgba(0,0,0,0.8)]">
               <span className="w-10 h-[2px] bg-primary"></span>
               Software Engineer
             </div>
 
-            <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-white leading-tight">
+            <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-white leading-tight [text-shadow:_0_4px_12px_rgba(0,0,0,0.9)]">
               LIYAQATH ALI <br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-secondary neon-text">
+              <span className="text-white font-medium text-4xl md:text-5xl mt-2 block tracking-normal [text-shadow:_0_2px_8px_rgba(0,0,0,0.8)]">
                 Full Stack Developer
               </span>
             </h1>
 
-            <p className="text-slate-400 text-lg md:text-xl max-w-lg leading-relaxed">
+            <p className="text-slate-300 font-medium text-lg md:text-xl max-w-lg leading-relaxed [text-shadow:_0_2px_6px_rgba(0,0,0,0.8)]">
               Building scalable enterprise SaaS applications with modern technologies. I specialize in turning complex problems into elegant, production-ready solutions.
             </p>
 
