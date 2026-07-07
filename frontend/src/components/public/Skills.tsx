@@ -103,9 +103,11 @@ const Skills = () => {
         </div>
 
         <div className="mt-20">
-          <button className="px-8 py-3 bg-primary/10 text-primary font-bold rounded-full hover:bg-primary/20 transition-all duration-300 border border-primary/50 hover:neon-glow">
-            Download Resume
-          </button>
+          <a href="/Liyaqath_Ali_Resume.pdf" download="Liyaqath_Ali_Resume.pdf" target="_blank" rel="noopener noreferrer">
+            <button className="px-8 py-3 bg-primary/10 text-primary font-bold rounded-full hover:bg-primary/20 transition-all duration-300 border border-primary/50 hover:neon-glow">
+              Download Resume
+            </button>
+          </a>
         </div>
 
       </div>
