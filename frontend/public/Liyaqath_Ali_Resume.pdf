@@ -6,25 +6,130 @@ endobj
 << /Type /Pages /Kids [3 0 R] /Count 1 >>
 endobj
 3 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica >> >> >> /Contents 4 0 R >>
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica >> /F2 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >> >> >> /Contents 4 0 R >>
 endobj
 4 0 obj
-<< /Length 133 >>
+<< /Length 3800 >>
 stream
+0.5 w
+0.2 g
+54 738 m 541 738 l S
+54 662 m 541 662 l S
+54 460 m 541 460 l S
+54 402 m 541 402 l S
+54 320 m 541 320 l S
+54 262 m 541 262 l S
+
 BT
-/F1 24 Tf
-72 750 Td
-(Liyaqath Ali) Tj
-/F1 14 Tf
-0 -40 Td
-(Full Stack Developer) Tj
-/F1 12 Tf
-0 -30 Td
-(Email: liyaqathali385@gmail.com) Tj
-0 -20 Td
-(Phone: +91 7795478115) Tj
-0 -40 Td
-(Resume PDF placeholder - Replace this file with your actual resume PDF.) Tj
+/F2 15 Tf
+14 TL
+54 802 Td
+(LIYAQATH ALI) Tj T*
+/F1 9.5 Tf
+11 TL
+(Software Engineer | Full Stack Developer) Tj T*
+/F1 8 Tf
+(Email: liyaqathali385@gmail.com   |   Phone: +91 7795478115   |   LinkedIn: linkedin.com/in/liyaqath-ali) Tj T*
+(GitHub: github.com/liyaqath7890) Tj
+ET
+
+BT
+/F2 9.5 Tf
+12 TL
+54 722 Td
+(SUMMARY) Tj T*
+/F1 8 Tf
+10 TL
+(Full-Stack Developer with 6+ months of experience building enterprise SaaS applications using React.js,) Tj T*
+(TypeScript, Node.js, Express.js, PostgreSQL, and MongoDB. Experienced in developing scalable REST APIs,) Tj T*
+(RBAC, multi-tenant architectures, and responsive web applications. Contributed to POS, Inventory,) Tj T*
+(Fulfillment, Restaurant POS, School Management System, and AI-powered applications.) Tj
+ET
+
+BT
+/F2 9.5 Tf
+12 TL
+54 646 Td
+(PROFESSIONAL EXPERIENCE) Tj T*
+/F2 8.5 Tf
+10 TL
+(Software Developer Intern                                                                                    05/2024 - Present | Bangalore) Tj T*
+/F1 8.5 Tf
+(Maskan Technologies) Tj T*
+/F1 8 Tf
+9.5 TL
+(- Developed enterprise SaaS applications including Product Information Management \(PIM\), Inventory) Tj T*
+(  Management, Fulfillment, School Management System, and Restaurant Management Platform using) Tj T*
+(  React.js, TypeScript, Node.js, Express.js, PostgreSQL, and MongoDB.) Tj T*
+(- Built responsive web and mobile interfaces, reusable React components, and improved UI/UX) Tj T*
+(  across multiple enterprise modules using React.js, Tailwind CSS, Bootstrap, and Vite.) Tj T*
+(- Developed secure RESTful APIs, JWT Authentication, Role-Based Access Control \(RBAC\), Tenant) Tj T*
+(  Management, and scalable multi-tenant architecture while integrating PIM, Inventory, and) Tj T*
+(  Fulfillment systems.) Tj T*
+(- Contributed to client projects by implementing new features, resolving production issues,) Tj T*
+(  deploying applications using Vercel and Render, and collaborating through Git, GitHub, Postman,) Tj T*
+(  and Agile methodologies.) Tj
+ET
+
+BT
+/F2 9.5 Tf
+12 TL
+54 444 Td
+(EDUCATION) Tj T*
+/F2 8.5 Tf
+10 TL
+(Bachelor of Technology \(Computer Science Engineering\)                                                      2025 | CGPA: 8.6/10) Tj T*
+/F1 8.5 Tf
+(CMR University, Bangalore) Tj
+ET
+
+BT
+/F2 9.5 Tf
+12 TL
+54 386 Td
+(SKILLS) Tj T*
+/F1 8 Tf
+9.5 TL
+(- Languages: JavaScript, TypeScript, Python, SQL, HTML5, CSS3, Tailwind CSS, Bootstrap, React Router, Axios, Vite) Tj T*
+(- Frameworks: React.js, Node.js, Express.js, REST APIs, JWT, RBAC) Tj T*
+(- Databases: PostgreSQL, MongoDB, MySQL) Tj T*
+(- Tools: Git, GitHub, Docker, Postman, npm, VS Code | Deployments: Vercel, Render) Tj
+ET
+
+BT
+/F2 9.5 Tf
+12 TL
+54 304 Td
+(CERTIFICATES) Tj T*
+/F1 8 Tf
+10 TL
+(- MERN Stack Development - Innovate Digital Academy) Tj T*
+(- Google Data Analytics Professional Certificate - Coursera) Tj
+ET
+
+BT
+/F2 9.5 Tf
+12 TL
+54 246 Td
+(PROJECTS) Tj T*
+/F2 8.5 Tf
+10 TL
+(AI Job Platform) Tj T*
+/F1 8 Tf
+9.5 TL
+(- Developed an AI-powered job platform enabling intelligent resume analysis, personalized job) Tj T*
+(  matching, secure authentication, and role-based dashboards.) Tj T*
+(- Built scalable REST APIs and responsive user interfaces using React.js, TypeScript, Node.js,) Tj T*
+(  PostgreSQL, and deployed applications using Vercel and Render.) Tj T*
+/F2 8.5 Tf
+11 TL
+(Product Information Management \(PIM\), Inventory & Fulfillment Platform) Tj T*
+/F1 8 Tf
+9.5 TL
+(- Developed enterprise SaaS modules including Product Catalog, Product Families, Variants, Assets,) Tj T*
+(  Inventory, Warehouse, Vendors, Purchase Orders, and SKU Management.) Tj T*
+(- Implemented RBAC, Tenant Management, backend APIs, and integrated PIM, Inventory, and) Tj T*
+(  Fulfillment systems using secure REST APIs.) Tj
 ET
 endstream
 endobj
@@ -38,5 +143,5 @@ xref
 trailer
 << /Size 5 /Root 1 0 R >>
 startxref
-467
+4122
 %%EOF
